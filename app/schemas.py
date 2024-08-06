@@ -13,6 +13,13 @@ class User(UserBase):
     class Config:
         orm_mode = True
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: str | None = None
+
 class TestBase(BaseModel):
     title: str
     description: str
@@ -30,7 +37,7 @@ class QuestionBase(BaseModel):
     question_text: str
 
 class QuestionCreate(QuestionBase):
-    pass
+    test_id: int
 
 class Question(QuestionBase):
     id: int
@@ -44,7 +51,7 @@ class AnswerBase(BaseModel):
     is_correct: bool
 
 class AnswerCreate(AnswerBase):
-    pass
+    question_id: int
 
 class Answer(AnswerBase):
     id: int
@@ -57,7 +64,8 @@ class ResultBase(BaseModel):
     score: int
 
 class ResultCreate(ResultBase):
-    pass
+    user_id: int
+    test_id: int
 
 class Result(ResultBase):
     id: int
