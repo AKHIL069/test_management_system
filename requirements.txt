@@ -4,3 +4,7 @@ sqlalchemy
 pydantic
 mysqlclient
 pytest
+python-jose
+passlib[bcrypt]
+PyMySQL
+python-multipart

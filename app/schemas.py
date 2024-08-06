@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class UserBase(BaseModel):
     username: str
@@ -18,7 +19,7 @@ class Token(BaseModel):
     token_type: str
 
 class TokenData(BaseModel):
-    username: str | None = None
+    username: Optional[str] = None
 
 class TestBase(BaseModel):
     title: str
@@ -26,6 +27,10 @@ class TestBase(BaseModel):
 
 class TestCreate(TestBase):
     pass
+
+class TestUpdate(BaseModel):
+    title: Optional[str] = None
+    description: Optional[str] = None
 
 class Test(TestBase):
     id: int
@@ -38,6 +43,9 @@ class QuestionBase(BaseModel):
 
 class QuestionCreate(QuestionBase):
     test_id: int
+
+class QuestionUpdate(BaseModel):
+    question_text: Optional[str] = None
 
 class Question(QuestionBase):
     id: int
@@ -52,6 +60,10 @@ class AnswerBase(BaseModel):
 
 class AnswerCreate(AnswerBase):
     question_id: int
+
+class AnswerUpdate(BaseModel):
+    answer_text: Optional[str] = None
+    is_correct: Optional[bool] = None
 
 class Answer(AnswerBase):
     id: int
